@@ -11,13 +11,12 @@ Exemplos de perguntas:
 - "Quais são os casos de dispensa de licitação?"
 - "Me mostra o art. 75 da Lei 14.133"
 - "Onde aparece a sigla ETP na legislação?"
-- "A NCM 8424.41.00 está na lista de desoneração?"
 - "O que a lei exige no estudo técnico preliminar?"
 
 ## Componentes
 
 - **Skill `pesquisa-juridica`** — a metodologia de pesquisa: qual ferramenta usar para cada tipo de pergunta, como montar referências e como citar com evidência.
-- **Conexão MCP** — servidor do VectorGov em `https://mcp.vectorgov.io/mcp`, com 6 ferramentas de consulta (busca semântica, leitura direta de artigo, busca literal, tabelas de anexos, navegação por tema e menu de ajuda).
+- **Conexão MCP** — servidor do VectorGov em `https://mcp.vectorgov.io/mcp`, com 5 ferramentas de consulta (busca semântica, leitura direta de artigo, busca literal, navegação por tema e menu de ajuda).
 
 ## Como começar
 

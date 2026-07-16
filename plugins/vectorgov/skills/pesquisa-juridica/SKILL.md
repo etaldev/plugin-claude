@@ -12,7 +12,7 @@ description: >
   "quais normas", ou fizer perguntas genéricas como "pode me ajudar com
   licitação?" — o VectorGov tem as normas e esta skill sabe como buscá-las.
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
   author: "VectorGov"
 ---
 
@@ -22,7 +22,7 @@ metadata:
 
 O VectorGov é uma base curada, vigente e estruturada da legislação federal brasileira de licitações e contratações públicas. Diferente de buscar no Google ou no Planalto, ele entrega o texto legal correto (sem redações anteriores sobrepostas), com links de evidência verificáveis em cada resultado.
 
-Há 6 ferramentas disponíveis. O trabalho central desta skill é escolher a certa para cada pergunta.
+Há 5 ferramentas disponíveis. O trabalho central desta skill é escolher a certa para cada pergunta.
 
 ## Escopo da base — respeitar sempre
 
@@ -44,9 +44,6 @@ Pergunta do usuário
   ├─ Sigla ou expressão literal ("onde aparece ETP?", "quem cita o art. 191?")
   │   └─► grep
   │
-  ├─ Valor de tabela, código NCM, item de anexo de decreto/IN
-  │   └─► consultar_tabela
-  │
   ├─ "O que dá pra consultar?" / explorar por assunto
   │   └─► filtrar_por_tema  (sem parâmetro = catálogo de temas)
   │
@@ -54,7 +51,7 @@ Pergunta do usuário
       └─► menu
 ```
 
-## As 6 Ferramentas — Quando Usar Cada Uma
+## As 5 Ferramentas — Quando Usar Cada Uma
 
 ### 1. `lookup` — Leitura Direta de Dispositivo
 
@@ -102,7 +99,7 @@ token_budget: 3500 # padrão
 
 **Filtros opcionais:** `document_id` (ex.: `LEI-14.133-2021`, aceita com ou sem pontos), `tipo` (`LEI`, `DECRETO`, `IN`, `PORTARIA`), `ano`. Se o usuário citar a norma na própria pergunta, o filtro já é automático.
 
-**Cartões de tabela:** se um resultado vier como cartão de tabela normativa (citação no formato "Tabela X do Anexo Y do..."), chamar `consultar_tabela` para obter o item exato. NUNCA responder valor de tabela a partir da amostra do cartão.
+**Cartões de tabela:** se um resultado vier como cartão de tabela normativa (citação no formato "Tabela X do Anexo Y do..."), a amostra exibida é PARCIAL. NUNCA responder o valor de uma linha de tabela a partir dessa amostra — entregue o link de evidência para o usuário conferir a tabela na fonte.
 
 ### 3. `grep` — Busca Textual Literal
 
@@ -119,23 +116,7 @@ document_id: "LEI-14133-2021"   # opcional; omitir = busca global
 
 **Nota:** quando a busca literal não encontra nada, o backend cai automaticamente no índice curado (aliases e resumos) para resgatar o dispositivo — útil para siglas e sinônimos que não aparecem literalmente no texto.
 
-### 4. `consultar_tabela` — Tabelas de Anexos
-
-**Quando:** a pergunta envolve item exato de tabela normativa em anexo de decreto ou IN — alíquotas, taxas de depreciação, listas de bens, enquadramento por código NCM. Também sempre que `hybrid` retornar um cartão de tabela.
-
-**Como chamar:**
-
-```
-chave: "8424.41.00"                 # código NCM, com ou sem pontos; tem precedência
-termo: "turbina"                    # busca textual nas linhas, se não houver chave
-document_id: "DECRETO-12.955-2026"  # opcional
-anexo: "ANEXO-I"                    # opcional
-vigente_em: "2025-06-30"            # opcional — consulta versões históricas por data
-```
-
-A consulta é determinística: retorna a linha exata com citação e link de evidência. A confirmação de que um item NÃO consta da lista (`nao_consta: true`) é informação jurídica válida — citar a ausência com a fonte.
-
-### 5. `filtrar_por_tema` — Explorar por Assunto
+### 4. `filtrar_por_tema` — Explorar por Assunto
 
 **Quando:** o usuário quer navegar pelas normas por categorias curadas, ou descobrir o que existe na base sobre um assunto.
 
@@ -143,7 +124,7 @@ A consulta é determinística: retorna a linha exata com citação e link de evi
 
 **Como chamar:** sem parâmetro `theme`, retorna o catálogo de temas disponíveis. Com `theme` (slug, ex.: `licitacoes-14133`), retorna os dispositivos daquele tema, paginado. Se o usuário disser "próxima" ou "mais", chamar de novo com `page` incrementado e o mesmo `theme`.
 
-### 6. `menu` — Ajuda Geral
+### 5. `menu` — Ajuda Geral
 
 **Quando:** o usuário parece perdido, pede ajuda ou quer saber o que é possível fazer. Exibir o menu retornado INTEGRALMENTE, sem resumir nem omitir seções.
 
@@ -173,7 +154,6 @@ Esses links são a prova de que a informação é real. Copiar as URLs exatament
 |---|---|
 | "Me mostra o art. 75 e o contexto das regras de dispensa" | `lookup` → `hybrid` |
 | "Onde aparece 'ICTI' na Lei 14.133 e o que significa?" | `grep` → `hybrid` |
-| "Pulverizadores NCM 8424.41.00 estão desonerados?" | `consultar_tabela` direto |
 | "Quero explorar habilitação e depois ler os artigos principais" | `filtrar_por_tema` → `lookup` (batch) |
 
 Não hesitar em chamar 2-3 ferramentas se a pergunta pedir. O usuário quer a resposta completa.
@@ -208,12 +188,7 @@ Ação: `lookup(reference=["Art. 75 da Lei 14.133/2021", "Art. 3 da IN 65/2021",
 
 Ação: `grep(query="PCA")`. Listar os dispositivos onde aparece, com contexto e links.
 
-**Exemplo 5 — Item de tabela**
-> "A NCM 8424.41.00 está na lista de desoneração?"
-
-Ação: `consultar_tabela(chave="8424.41.00")`. Responder com a linha exata e o link de evidência — ou citar a ausência com a fonte, se `nao_consta`.
-
-**Exemplo 6 — Fora do escopo**
+**Exemplo 5 — Fora do escopo**
 > "Quantos dias de férias a CLT garante?"
 
 Ação: nenhuma busca. Informar que a base cobre legislação federal de licitações e contratações públicas, e que direito trabalhista está fora do escopo.
