@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "vectorgov": {
+      "type": "http",
+      "url": "https://mcp.vectorgov.io/mcp"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "vectorgov",
+  "owner": {
+    "name": "VectorGov",
+    "email": "comercial@etaldev.com.br"
+  },
+  "plugins": [
+    {
+      "name": "vectorgov",
+      "source": "./plugins/vectorgov",
+      "description": "Pesquisa jurídica em licitações e contratos públicos, com fonte verificável. Base curada e vigente da Lei 14.133/2021 e normas correlatas. Cada resposta traz link de evidência para conferir na norma original.",
+      "homepage": "https://vectorgov.io"
+    }
+  ]
+}
