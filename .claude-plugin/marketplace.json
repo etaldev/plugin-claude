@@ -1,5 +1,6 @@
 {
   "name": "vectorgov",
+  "description": "Plugins do VectorGov para o Claude: pesquisa na legislação federal brasileira de licitações e contratações públicas, a partir de uma base curada e vigente, com link de evidência em cada resposta.",
   "owner": {
     "name": "VectorGov",
     "email": "comercial@etaldev.com.br"
