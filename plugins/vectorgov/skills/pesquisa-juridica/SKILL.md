@@ -103,7 +103,7 @@ Pedido do usuário sobre o catálogo
 
 **Regras que valem ouro:**
 
-- **Buscar no catálogo** retorna os melhores itens do funil — **ausência ali NÃO prova inexistência**. Para afirmar "não existe no catálogo" ou fazer levantamento completo, use **Navegar categorias** (retorna contagem total exata; total 0 = prova de inexistência).
+- **Buscar no catálogo** retorna os melhores itens do funil — **ausência ali NÃO prova inexistência**. Para afirmar "não existe" ou fazer levantamento completo, use **Navegar categorias** (retorna contagem total exata). **Atenção ao escopo:** por padrão tudo é só-ativos, então `total 0` significa **"nenhum item ativo"**, não inexistência absoluta — para provar que algo nunca existiu (nem descontinuado), repita a navegação com `incluir_inativos=true`. Redija a resposta assim: "não há item ativo para X" (não "X não existe").
 - **Localizar por termo exato** sinaliza o nível do match no campo `modo_busca`: `exata` (todos os termos presentes), `ampla` (busca alargada automaticamente) ou `aproximada` (nada literal casou — trate 0 resultados como "o termo não existe no catálogo").
 - **Consultar por código aceita até 20 códigos numa chamada só** — "confere esses 8 códigos da planilha" = **1 chamada**, não 8. Cada chamada consome uma consulta do plano; agrupe sempre.
 - **Itens inativos (a armadilha do catálogo):** ~28% dos materiais do catálogo estão **inativos** (descontinuados — não empenháveis em novas contratações). Por padrão, **Buscar no catálogo**, **Localizar por termo exato** e **Navegar categorias** já retornam **só itens ativos** — você não precisa filtrar. Só passe `incluir_inativos=true` se o usuário pedir explicitamente histórico (conferir um código de edital/ata antigos). **Consultar por código** é a exceção: retorna o item mesmo inativo (você pediu aquele código específico) — e nesse caso, se vier marcado inativo, **avise o usuário em destaque que aquele CATMAT/CATSER não serve para nova contratação** e ofereça buscar o equivalente ativo. Nunca recomende um código inativo para uma compra nova sem esse aviso.
@@ -115,7 +115,7 @@ Pedido do usuário sobre o catálogo
 
 ## Como responder
 
-**Sempre inclua os links de evidência.** Cada resultado vem com link para ver o trecho destacado na norma e/ou baixar o PDF oficial. Formato compacto:
+**Sempre inclua os links de evidência — nas respostas de LEGISLAÇÃO.** Cada resultado da legislação vem com link para ver o trecho destacado na norma e/ou baixar o PDF oficial (as ferramentas de CATÁLOGO não retornam links de evidência — para elas, cite o código oficial). Formato compacto para legislação:
 
 > [1] Lei 14.133/2021, Art. 75 — [ver trecho](evidence_url) · [baixar PDF](document_url)
 
