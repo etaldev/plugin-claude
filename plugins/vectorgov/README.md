@@ -1,22 +1,22 @@
 # VectorGov para Claude
 
-Pesquisa jurídica em licitações e contratos públicos, direto no Claude. A base é curada e vigente. Cada resposta traz link de evidência para conferir na norma original.
+Pesquisa jurídica em licitações e contratos públicos, direto no Claude. A base é curada e vigente. Cada resposta traz link de evidência para conferir na fonte original.
 
 ## O que o plugin faz
 
-Conecta o Claude à base do VectorGov e ensina o Claude a pesquisar nela do jeito certo. Você pergunta em linguagem natural. O Claude escolhe a ferramenta de busca adequada, encontra o dispositivo legal e responde com o texto correto e a fonte verificável.
+Conecta o Claude à base do VectorGov e ensina o Claude a pesquisar nela do jeito certo. Você pergunta em linguagem natural. O Claude escolhe a ferramenta adequada, encontra o dispositivo legal ou o acórdão pertinente e responde com o texto correto e a fonte verificável.
 
 Exemplos de perguntas:
 
 - "Quais são os casos de dispensa de licitação?"
 - "Me mostra o art. 75 da Lei 14.133"
-- "Onde aparece a sigla ETP na legislação?"
-- "O que a lei exige no estudo técnico preliminar?"
+- "O que o TCU entende sobre exigência de atestado de capacidade técnica?"
+- "Qual o código CATMAT para comprar cadeiras giratórias?"
 
 ## Componentes
 
 - **Skill `pesquisa-juridica`** — a metodologia de pesquisa: qual ferramenta usar para cada tipo de pergunta, como montar referências e como citar com evidência.
-- **Conexão MCP** — servidor do VectorGov em `https://mcp.vectorgov.io/mcp`, com 5 ferramentas de consulta (busca semântica, leitura direta de artigo, busca literal, navegação por tema e menu de ajuda).
+- **Conexão MCP** — servidor do VectorGov em `https://mcp.vectorgov.io/mcp`, com ferramentas de consulta em três frentes: **legislação** (busca semântica, leitura de artigo, busca literal, navegação por tema, menu), **jurisprudência do TCU** (buscar, localizar termo, navegar e ler acórdãos) e **catálogo de compras** CATMAT/CATSER.
 
 ## Como começar
 
@@ -28,7 +28,7 @@ Não precisa configurar chave de API nem variável de ambiente. O login OAuth re
 
 ## O que a base cobre
 
-Legislação federal de licitações e contratações públicas: Lei 14.133/2021 e normas correlatas (decretos, instruções normativas, portarias). Perguntas de outros domínios jurídicos (trabalhista, tributário pessoal, civil, penal comum) estão fora do escopo — e o Claude vai te avisar em vez de improvisar.
+Legislação federal de licitações e contratações públicas (Lei 14.133/2021 e normas correlatas — decretos, instruções normativas, portarias), a jurisprudência do TCU sobre o tema (recorte do Informativo de Licitações e Contratos) e o catálogo oficial de compras (CATMAT/CATSER). Perguntas de outros domínios jurídicos (trabalhista, tributário pessoal, civil, penal comum) estão fora do escopo — e o Claude vai te avisar em vez de improvisar.
 
 ## Por que isso importa
 

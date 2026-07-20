@@ -1,7 +1,7 @@
 {
   "name": "vectorgov",
-  "version": "0.2.1",
-  "description": "Pesquisa jurídica em licitações e contratos públicos, com fonte verificável. Base curada e vigente da Lei 14.133/2021 e normas correlatas. Cada resposta traz link de evidência para conferir na norma original.",
+  "version": "0.3.0",
+  "description": "Pesquisa jurídica em licitações e contratos públicos, com fonte verificável: legislação vigente (Lei 14.133/2021 e normas correlatas), jurisprudência do TCU e catálogo oficial de compras (CATMAT/CATSER). Cada resposta traz link de evidência para conferir na fonte original.",
   "author": {
     "name": "VectorGov",
     "url": "https://vectorgov.io"
@@ -15,6 +15,10 @@
     "contratos administrativos",
     "direito administrativo",
     "legislação brasileira",
+    "jurisprudência",
+    "TCU",
+    "acórdãos",
+    "CATMAT",
     "jurídico",
     "brasil"
   ]

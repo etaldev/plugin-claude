@@ -9,7 +9,7 @@
     {
       "name": "vectorgov",
       "source": "./plugins/vectorgov",
-      "description": "Pesquisa jurídica em licitações e contratos públicos, com fonte verificável. Base curada e vigente da Lei 14.133/2021 e normas correlatas. Cada resposta traz link de evidência para conferir na norma original.",
+      "description": "Pesquisa jurídica em licitações e contratos públicos, com fonte verificável: legislação vigente (Lei 14.133/2021 e normas correlatas), jurisprudência do TCU e catálogo oficial de compras (CATMAT/CATSER). Cada resposta traz link de evidência para conferir na fonte original.",
       "homepage": "https://vectorgov.io"
     }
   ]
